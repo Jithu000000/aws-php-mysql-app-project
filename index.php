@@ -20,7 +20,7 @@ $result = $mysqli->query("SELECT NOW() AS now");
 $row = $result->fetch_assoc();
 
 // Output HTML
-echo "<h1>CI/CD Deployment Successful! 🚀</h1>";
+echo "<h1>Deployment Successful! 🚀</h1>";
 echo "<p>Time from DB: " . $row['now'] . "</p>";
 echo "<p>Served from host: " . gethostname() . "</p>";
 
