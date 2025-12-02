@@ -27,18 +27,9 @@ jobs:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USER: ${{ secrets.EC2_USER }}
 
-      - name: Deploy to Apache Document Root
-        run: |
-          ssh -i ~/.ssh/ec2_key -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST "
-          sudo cp -r /home/$EC2_USER/app/* /var/www/html/ && \
-          sudo chown -R apache:apache /var/www/html && \
-          sudo systemctl restart httpd
-          "
-
-
       - name: Deploy to Apache document root
         run: |
-          ssh -i ~/.ssh/ec2_key -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
+          ssh -i ~/.ssh/ec2_key -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << EOF
             sudo mkdir -p /var/www/html
             sudo cp -r /home/$EC2_USER/app/* /var/www/html/
             sudo chown -R apache:apache /var/www/html
